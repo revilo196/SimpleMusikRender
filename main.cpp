@@ -12,8 +12,14 @@ main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MusikQuadRender w;
-    AudioSpec as(QString("alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"));
+    AudioSpec * as;
     Generator gen(16);
+
+        if(argc> 0)
+        as = new AudioSpec(QString(argv[0]));
+        else
+        as = new AudioSpec(QString("alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"));
+
 
     as.startListen();
 
@@ -21,8 +27,11 @@ main(int argc, char *argv[])
 
     w.show();
 
+
     Driver d;
     d.start(&as,&gen,&w);
+
+    delete as;
 
     return a.exec();
 }
