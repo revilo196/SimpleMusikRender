@@ -70,6 +70,15 @@ signals:
 
 public slots:
 
+    void reciveRMS(double RMS){
+    this->rms = RMS;
+    }
+
+    void reciveSpec(QVector<float> spec){
+    spectrum = spec;
+    needUpdate = true;
+    }
+
 private:
     void mapToCube();
 };

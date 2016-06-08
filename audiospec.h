@@ -50,7 +50,7 @@ public:
 signals:
 
     void sendRMS(double rms);
-    void sendSpec(double Spec);
+    void sendSpec(double spec);
 
 public slots:
 
