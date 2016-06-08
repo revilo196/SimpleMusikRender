@@ -25,7 +25,7 @@ public:
 protected:
     void initializeGL();
     void paintGL();
-    void timerEvent(QTimerEvent *e);
+  //  void timerEvent(QTimerEvent *e);
     QBasicTimer * timer;
 private:
     void initializeShader();

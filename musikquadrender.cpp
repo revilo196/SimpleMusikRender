@@ -13,49 +13,10 @@ static const Vertex sg_vertexes[] = {
 
 MusikQuadRender::MusikQuadRender(QWidget *parent) : QOpenGLWidget(parent) ,vIndex(QOpenGLBuffer::IndexBuffer)
 {
-    //vIndex = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-
-
     quadTransforms =0;
     quadColors =0;
     numQuads = 0;
     numColor = 0;
-
-  /* //Set Transform
-    quadTransforms = new QMatrix4x4[3];
-
-    quadTransforms[0].translate(-0.5,0,-3);
-    quadTransforms[1].translate(-0.1,-0.2,-3);
-    quadTransforms[2].translate(0.6,-0.1,-4);
-
-    quadTransforms[0].rotate(30,0.3,0.45,0);
-    quadTransforms[1].rotate(70,1.0,0.5,0);
-    quadTransforms[2].rotate(66,0.6,0,0.0);
-
-    quadTransforms[0].scale(0.2);
-    quadTransforms[1].scale(0.2);
-    quadTransforms[2].scale(0.3);
-
-    numQuads = 3;*/
-
-
-    QVector3D sizes[] = {
-        QVector3D(0.2,1.5,1),
-        QVector3D(0.2,1,1),
-        QVector3D(0.2,2,1),
-        QVector3D(0.2,1.3,1),
-        QVector3D(0.2,1.7,1),
-        QVector3D(0.2,3,1),
-        QVector3D(0.2,1.2,1),
-        QVector3D(0.2,1.6,1),
-        QVector3D(0.2,1.9,1),
-        QVector3D(0.2,1.7,1),
-        QVector3D(0.2,1.3,1),
-        QVector3D(0.2,1.8,1),
-        QVector3D(0.2,1,1),
-    };
-
-    //sendSizeData(sizes,13);
 
     timer = new QBasicTimer();
 
@@ -92,8 +53,6 @@ void MusikQuadRender::sendSizeData(QVector3D *quadSize, int arrSize)
 
 void MusikQuadRender::sendColorData(QVector3D *color, int arrSize)
 {
-
-    const qreal alpha = 1.0;
 
     if(quadColors == 0 && numColor == 0){
 
@@ -336,7 +295,7 @@ void MusikQuadRender::paintGL()
 
       programmTex->bind();
 
-      glViewport(0,0,1600,800);
+      glViewport(0,0,1200,700);
             glClear(GL_COLOR_BUFFER_BIT);
 
       glDrawArrays(GL_TRIANGLES,0,6);
@@ -352,7 +311,7 @@ void MusikQuadRender::paintGL()
 
 
 }
-
+/* Test the Render animation
 void MusikQuadRender::timerEvent(QTimerEvent *e)
 {
     nframe++;
@@ -378,6 +337,6 @@ void MusikQuadRender::timerEvent(QTimerEvent *e)
 
     this->update();
 }
-
+*/
 
 

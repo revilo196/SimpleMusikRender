@@ -7,6 +7,7 @@
 //#include <qfouriertransformer.h>
 #include <QAudioInput>
 #include <QIODevice>
+#include <QThread>
 
 int main(int argc, char *argv[])
 {
@@ -14,12 +15,18 @@ int main(int argc, char *argv[])
     MusikQuadRender w;
     AudioSpec * as;
     Generator gen(16);
+    QThread * musik = new QThread();
 
-        if(argc> 0)
-        as = new AudioSpec(QString(argv[0]));
-        else
+    if(argc > 1)
+        as = new AudioSpec(QString(argv[1]));
+    else
         as = new AudioSpec(QString("alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"));
+    as->moveToThread(musik);
 
+    musik->start();
+
+    qInfo() << as->thread();
+    qInfo() << musik;
 
     as->startListen();
 
@@ -31,8 +38,8 @@ int main(int argc, char *argv[])
     Driver d;
     d.start(as,&gen,&w);
 
+    int extc =a.exec();
     delete as;
-
-    return a.exec();
+    return extc;
 }
 
