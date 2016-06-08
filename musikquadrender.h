@@ -9,12 +9,16 @@
 #include <QOpenGLFramebufferObject>
 #include <QBasicTimer>
 
-
+/*!
+ * \brief The MusikQuadRender class Renders Quads
+ */
 class MusikQuadRender : public QOpenGLWidget , protected QOpenGLFunctions_4_3_Core
 {
 public:
     MusikQuadRender(QWidget *parent = 0);
 
+
+    //Sends down data is Rendes next update..
     void sendSizeData(QVector3D* quadSize, int arrSize);
     void sendColorData(QVector3D* color, int arrSize);
 

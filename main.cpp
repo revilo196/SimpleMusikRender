@@ -8,7 +8,7 @@
 #include <QAudioInput>
 #include <QIODevice>
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MusikQuadRender w;
@@ -21,7 +21,7 @@ main(int argc, char *argv[])
         as = new AudioSpec(QString("alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"));
 
 
-    as.startListen();
+    as->startListen();
 
     w.setGeometry(0,0,1200,700);
 
@@ -29,7 +29,7 @@ main(int argc, char *argv[])
 
 
     Driver d;
-    d.start(&as,&gen,&w);
+    d.start(as,&gen,&w);
 
     delete as;
 
