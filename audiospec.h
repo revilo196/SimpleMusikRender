@@ -47,6 +47,10 @@ public:
      */
     QVector<float> getSpectro(){return Spectro;}
 
+signals:
+
+    void sendRMS(double rms);
+    void sendSpec(double Spec);
 
 public slots:
 
