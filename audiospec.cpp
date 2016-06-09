@@ -141,9 +141,9 @@ void AudioSpec::sound()
         fftBase.do_fft(erg,x);
 
 
-        Spectro.resize(fSize);//constant because of the fixed audioBufferSize
+        Spectro.resize(fSize/2);//constant because of the fixed audioBufferSize
 
-        for(int j = 0; j < size/4;j++){
+        for(int j = 0; j < size/2;j++){
 
             double mag =  sqrt((erg[j]* erg[j]) + (erg[(j + 1) + (size/2) ]*erg[(j + 1) + (size/2)]));
 

@@ -110,7 +110,7 @@ void Generator::mapToCube()
             int lastSpec = 0;
             for(int i = 0; i<numQuades;i++)
             {
-                int thisSpec = a * ((i+1)*(i+1));
+                int thisSpec = a * ((i)*(i));
 
                quadMapedSpec.data()[i] = 0;
 
@@ -124,8 +124,11 @@ void Generator::mapToCube()
                     quadMapedSpec.data()[i] += spectrum.at(j);
 
                 }
+
                 quadMapedSpec.data()[i] =  quadMapedSpec.data()[i] / (thisSpec-lastSpec);
 
+
+                lastSpec = thisSpec;
                 //qInfo() <<  quadMapedSpec.data()[i];
             }
         }
