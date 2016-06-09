@@ -82,6 +82,8 @@ public slots:
 
 private:
     void mapToCube();
+
+    QVector3D mapColor(float volume);
 };
 
 #endif // GENERATOR_H

@@ -13,8 +13,9 @@ void Driver::timerEvent(QTimerEvent *e)
 
 
     QVector<QVector3D> scales = gen->calcSize();
+    QVector<QVector3D> colors = gen->calcColor();
 
-    const int sizeVec = 16;
+    const int sizeVec = 32;
 
     QVector3D data[sizeVec];
     QVector3D color[sizeVec];
@@ -26,7 +27,7 @@ void Driver::timerEvent(QTimerEvent *e)
     }
 
     w->sendSizeData(data,sizeVec);
-    w->sendColorData(color,sizeVec);
+    w->sendColorData(colors.data(),colors.size());
 
     w->update();
 

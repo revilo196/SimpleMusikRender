@@ -24,7 +24,7 @@ QVector<QVector3D> Generator::calcPos()
 
     QVector<QVector3D> positions(numQuades);
 
-    QVector3D startPos(-1.0,0.0,0.0);
+    QVector3D startPos(-1.0,2 * rms,0.0);
 
     float width = 2.0/numQuades;
 
@@ -62,7 +62,7 @@ QVector<QVector3D> Generator::calcSize()
          //qInfo() << quadMapedSpec.at(i);
 
          float x = stdScale.x();
-         float y = stdScale.y() * (log10(quadMapedSpec.at(i)+1) *20);
+         float y = stdScale.y() * (quadMapedSpec.at(i));
          float z = stdScale.z();
 
          scales.data()[i] = QVector3D(x,y,z);
@@ -80,7 +80,7 @@ QVector<QVector3D> Generator::calcColor()
     QVector<QVector3D> colors(numQuades);
 
     for(int i = 0; i < numQuades; i++) {
-        colors.data()[i] = QVector3D(1.0,0.1,0.1);
+        colors.data()[i] = mapColor(quadMapedSpec.at(i));
     }
 
     return colors;
@@ -126,11 +126,25 @@ void Generator::mapToCube()
 
                 }
 
-                quadMapedSpec.data()[i] =  quadMapedSpec.data()[i] / (thisSpec-lastSpec);
+                quadMapedSpec.data()[i] =  log10(quadMapedSpec.data()[i]/(thisSpec-lastSpec) +1) *20;
 
                 lastSpec = thisSpec;
                 //qInfo() <<  quadMapedSpec.data()[i];
             }
         }
     }
+}
+
+QVector3D Generator::mapColor(float volume)
+{
+    volume = volume / 25;
+   // qInfo()<< volume;
+
+    double red = highCol.redF() * volume  +  lowCol.redF() * (1.1-volume);
+
+    double green = highCol.greenF() * volume  +  lowCol.greenF() * (1.1-volume);
+
+    double blue = highCol.blueF() * volume  +  lowCol.blueF() * (1.1-volume);
+
+    return QVector3D(red,green,blue);
 }
