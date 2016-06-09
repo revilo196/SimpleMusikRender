@@ -50,7 +50,7 @@ public:
 signals:
 
     void sendRMS(double rms);
-    void sendSpec(double spec);
+    void sendSpec(QVector<float> *spec); //Slow ? maybe send only Pointer ?
 
 public slots:
 

@@ -63,7 +63,7 @@ AudioSpec::AudioSpec(QString AudioName, QObject *parent) : QObject(parent)
 
 void AudioSpec::startListen()
 {
-    audioIn->setBufferSize(20000);
+    audioIn->setBufferSize(10000);
 
 
     audioIn->setNotifyInterval(1000);
@@ -135,11 +135,14 @@ void AudioSpec::sound()
         //Save for output-----------
         this->RMS = RMS;
 
+        this->sendRMS(this->RMS);
+
         //calculate fft---------------
         ffft::FFTReal<float> fftBase(size);
         float erg[fSize];
         fftBase.do_fft(erg,x);
 
+        if(!Spectro.isDetached()){
 
         Spectro.resize(fSize/2);//constant because of the fixed audioBufferSizes
 
@@ -151,6 +154,9 @@ void AudioSpec::sound()
             Spectro.replace(j,mag);
         }
 
+        this->sendSpec(new QVector<float>(Spectro));
+        qInfo() << "SEND";
+        }
 
     }
 
@@ -162,7 +168,7 @@ void AudioSpec::sound()
  */
 void AudioSpec::notified()
 {
-    qInfo() << "NOTI";;
+    //qInfo() << "NOTI";;
 }
 
 

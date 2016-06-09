@@ -10,6 +10,7 @@ Generator::Generator(int numQuads, QObject *parent) : QObject(parent)
     rms = 1;
     numQuades = numQuads;
     quadMapedSpec.resize(numQuads);
+    spectrum = new QVector<float>();
 
     highCol.setRgb(255,5,5);
     lowCol.setRgb(80,180,10);
@@ -90,20 +91,20 @@ QVector<QVector3D> Generator::calcColor()
  */
 void Generator::mapToCube()
 {
-    if (spectrum.size() < numQuades)
+    if (spectrum->size() < numQuades)
     {
         //not enougth spectum data
     }
-    else if (spectrum.size() == numQuades)
+    else if (spectrum->size() == numQuades)
     {
         //nothing to map
-        quadMapedSpec = spectrum;
+        quadMapedSpec = *spectrum;
     }
-    else if(spectrum.size() > numQuades)
+    else if(spectrum->size() > numQuades)
     {
-        int a = (float)spectrum.size()/ ((float)numQuades*(float)numQuades);
+        int a = (float)spectrum->size()/ ((float)numQuades*(float)numQuades);
 
-        if(( a == (float)spectrum.size()/ ((float)numQuades*(float)numQuades)))
+        if(( a == (float)spectrum->size()/ ((float)numQuades*(float)numQuades)))
         {
 
 
@@ -116,12 +117,12 @@ void Generator::mapToCube()
 
                 for(int j = lastSpec; j<= thisSpec; j++)
                 {
-                    if(j < 0 || j >= spectrum.size())
+                    if(j < 0 || j >= spectrum->size())
                     {
                         //ERROR
                         return;
                     }
-                    quadMapedSpec.data()[i] += spectrum.at(j);
+                    quadMapedSpec.data()[i] += spectrum->at(j);
 
                 }
 

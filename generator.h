@@ -18,7 +18,7 @@ class Generator : public QObject
     Q_OBJECT
 
     double rms;
-    QVector<float> spectrum;
+    QVector<float> * spectrum;
 
     int numQuades;
     QVector<float> quadMapedSpec;
@@ -38,7 +38,7 @@ public:
      *
      * \param spec QVector<float> new Spectrtum data
      */
-    void setSpectrum(QVector<float> spec){spectrum = spec; needUpdate = true;}
+    //void setSpectrum(QVector<float> spec){spectrum = spec; needUpdate = true;}
 
     /*!
      * \brief setRMS gives the Generator a new RMS value
@@ -74,7 +74,8 @@ public slots:
     this->rms = RMS;
     }
 
-    void reciveSpec(QVector<float> spec){
+    void reciveSpec(QVector<float> * spec){
+    delete spectrum;
     spectrum = spec;
     needUpdate = true;
     }
