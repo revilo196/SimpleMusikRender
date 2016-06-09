@@ -127,7 +127,6 @@ void Generator::mapToCube()
 
                 quadMapedSpec.data()[i] =  quadMapedSpec.data()[i] / (thisSpec-lastSpec);
 
-
                 lastSpec = thisSpec;
                 //qInfo() <<  quadMapedSpec.data()[i];
             }

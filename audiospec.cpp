@@ -141,7 +141,7 @@ void AudioSpec::sound()
         fftBase.do_fft(erg,x);
 
 
-        Spectro.resize(fSize/2);//constant because of the fixed audioBufferSize
+        Spectro.resize(fSize/2);//constant because of the fixed audioBufferSizes
 
         for(int j = 0; j < size/2;j++){
 
