@@ -1,10 +1,17 @@
 #include "driver.h"
+#include <QTimerEvent>
 
 void Driver::timerEvent(QTimerEvent *e)
 {
 
-    gen->setSpectrum(a->getSpectro());
-    gen->setRMS(a->getRMS());
+  //  gen->setSpectrum(a->getSpectro());
+  //  gen->setRMS(a->getRMS());
+
+    if(!init){
+        connect(a,SIGNAL(sendRMS(double)),gen,SLOT(reciveRMS(double)));
+        connect(a,SIGNAL(sendSpec(QVector<float>*)),gen,SLOT(reciveSpec(QVector<float>*)));
+        init = true;
+    }
 
 
     QVector<QVector3D> scales = gen->calcSize();
@@ -24,5 +31,9 @@ void Driver::timerEvent(QTimerEvent *e)
     w->sendColorData(color,sizeVec);
 
     w->update();
+
+    qInfo() << 1000.0/fpsMon->elapsed();
+
+    fpsMon->restart();
 
 }
