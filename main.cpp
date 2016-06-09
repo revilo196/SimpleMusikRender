@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MusikQuadRender w;
     AudioSpec * as;
-    Generator gen(16);
+    Generator gen(32);
     QThread * musik = new QThread();
 
     if(argc > 1)
@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 
     qInfo() << as->thread();
     qInfo() << musik;
+
 
     as->startListen();
 

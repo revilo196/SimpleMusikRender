@@ -155,7 +155,7 @@ void AudioSpec::sound()
         }
 
         this->sendSpec(new QVector<float>(Spectro));
-        qInfo() << "SEND";
+        //qInfo() << "SEND";
         }
 
     }

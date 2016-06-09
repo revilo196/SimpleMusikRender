@@ -4,8 +4,6 @@
 void Driver::timerEvent(QTimerEvent *e)
 {
 
-  //  gen->setSpectrum(a->getSpectro());
-  //  gen->setRMS(a->getRMS());
 
     if(!init){
         connect(a,SIGNAL(sendRMS(double)),gen,SLOT(reciveRMS(double)));
@@ -32,7 +30,7 @@ void Driver::timerEvent(QTimerEvent *e)
 
     w->update();
 
-    qInfo() << 1000.0/fpsMon->elapsed();
+    //qInfo() << 1000.0/fpsMon->elapsed();
 
     fpsMon->restart();
 
