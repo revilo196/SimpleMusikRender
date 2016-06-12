@@ -9,6 +9,7 @@ out vec4 vColor;
 out vec2 UV;
 void main()
 {
+
   gl_Position = projMatrix * modelMatrix *vec4(position, 1.0);
   vColor = vec4(color, 1.0);
   UV = gl_Position.xy;

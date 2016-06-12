@@ -286,7 +286,7 @@ void MusikQuadRender::paintGL()
       glDrawElementsInstanced(GL_TRIANGLES, numIndx, GL_UNSIGNED_SHORT,0, numQuads);
 
 
-      frame->bindDefault();
+
 
 
       vObject.release();
@@ -295,11 +295,20 @@ void MusikQuadRender::paintGL()
 
       programmTex->bind();
 
-      glViewport(0,0,1200,700);
-            glClear(GL_COLOR_BUFFER_BIT);
 
+/*
+
+      glViewport(0,0,400,300);
+           // glClear(GL_COLOR_BUFFER_BIT);
       glDrawArrays(GL_TRIANGLES,0,6);
+*/
 
+
+       frame->bindDefault();
+
+      glViewport(0,0,400,300);
+           // glClear(GL_COLOR_BUFFER_BIT);
+      glDrawArrays(GL_TRIANGLES,0,6);
 
 
 

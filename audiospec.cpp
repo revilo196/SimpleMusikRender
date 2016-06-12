@@ -14,7 +14,7 @@ AudioSpec::AudioSpec(QString AudioName, QObject *parent) : QObject(parent)
 
     QAudioDeviceInfo found;
     foreach (QAudioDeviceInfo str, list) {
-        //qInfo() << str.deviceName();
+        qInfo() << str.deviceName();
 
     if(str.deviceName() == AudioName )
             found = str;

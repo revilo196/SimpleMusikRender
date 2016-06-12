@@ -24,7 +24,7 @@ QVector<QVector3D> Generator::calcPos()
 
     QVector<QVector3D> positions(numQuades);
 
-    QVector3D startPos(-1.0,2 * rms,0.0);
+    QVector3D startPos(-1.0,0.5 * rms,0.0);
 
     float width = 2.0/numQuades;
 

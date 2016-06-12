@@ -17,7 +17,11 @@ SOURCES += main.cpp \
     Primitives/shapegenerator.cpp \
     audiospec.cpp \
     generator.cpp \
-    driver.cpp
+    driver.cpp \
+    EngineCore/renderable.cpp \
+    EngineCore/material.cpp \
+    EngineCore/scene.cpp \
+    EngineCore/entity.cpp
 
 HEADERS  += \
     musikquadrender.h \
@@ -46,7 +50,11 @@ HEADERS  += \
     ffft/OscSinCos.h \
     ffft/OscSinCos.hpp \
     generator.h \
-    driver.h
+    driver.h \
+    EngineCore/renderable.h \
+    EngineCore/material.h \
+    EngineCore/scene.h \
+    EngineCore/entity.h
 
 
 DISTFILES += \
